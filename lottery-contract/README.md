@@ -1,8 +1,8 @@
 before deploy
 ```
 $ touch .env
-$ echo>>MNEMONIC="あなたのイーサリアムアカウントのニーモニック"
-$ echo>>INFURA_ACCESS_TOKEN="INFURAで取得したアクセストークン"
+$ echo MNEMONIC="あなたのイーサリアムアカウントのニーモニック" > .env
+$ echo INFURA_ACCESS_TOKEN="INFURAで取得したアクセストークン" > .env
 ```
 
 deploy 
