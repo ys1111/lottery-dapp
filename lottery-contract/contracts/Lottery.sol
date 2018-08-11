@@ -9,6 +9,9 @@ contract Lottery {
     }
     
     function enter() public payable {
+        for (uint i=0; i<players.length; i++) {
+            require(msg.sender != players[i]);
+        }
         require(msg.value > .01 ether);
         players.push(msg.sender);
     }
