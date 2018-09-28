@@ -1,5 +1,6 @@
 const { assertRevert } = require('./helpers/assertRevert');
 const BigNumber = web3.BigNumber;
+
 const Lottery = artifacts.require('Lottery.sol');
 
 require('chai')
@@ -84,15 +85,4 @@ contract('Lottery', function (accounts) {
     });
 
   });
-
-  
-
-
-
-  
-
-  
-
-  //     
-  // });
 });

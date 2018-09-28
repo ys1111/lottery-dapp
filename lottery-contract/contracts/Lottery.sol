@@ -9,10 +9,11 @@ contract Lottery {
     }
     
     function enter() public payable {
+      // 同じ人が何度も参加できないようにしましょう
         for (uint i=0; i<players.length; i++) {
             require(msg.sender != players[i]);
         }
-        require(msg.value > .01 ether);
+        require(msg.value > 0.01 ether);
         players.push(msg.sender);
     }
     
@@ -20,12 +21,14 @@ contract Lottery {
         return uint(keccak256(block.difficulty, now, players));
     }
     
+    // コントラクト作成者にしか呼び出せないようにしよう
     function pickWinner() public restricted {
         uint index = random() % players.length;
         players[index].transfer(address(this).balance);
         players = new address[](0);
     }
     
+    // コントラクト作成者にしか呼び出せない修飾子を作ろう
     modifier restricted() {
         require(msg.sender == manager);
         _;

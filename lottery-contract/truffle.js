@@ -6,13 +6,6 @@ var accessToken = process.env.INFURA_ACCESS_TOKEN;
 
 module.exports = {
   networks: {
-    ganacheGui: {
-    host: "localhost",
-    port: 7545,
-    network_id: "*", // Match any network id
-    gas: 6500000,
-    gasPrice: 100000000000
-    },
     development: {
     host: "localhost",
     port: 8545,
