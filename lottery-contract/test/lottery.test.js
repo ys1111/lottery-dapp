@@ -19,70 +19,70 @@ contract('Lottery', function (accounts) {
       assert.ok(lottery.address);
     });
 
-    it('allows one account to enter', async () => {
-      await this.lottery.enter({
-        from: accounts[0],
-        value: web3.toWei(0.02, 'ether')
-      });
+  //   it('allows one account to enter', async () => {
+  //     await this.lottery.enter({
+  //       from: accounts[0],
+  //       value: web3.toWei(0.02, 'ether')
+  //     });
 
-      const players = await this.lottery.getPlayers()
+  //     const players = await this.lottery.getPlayers()
 
-      players[0].should.be.equal(accounts[0]);
-      players.length.should.be.equal(1);
-    });
+  //     players[0].should.be.equal(accounts[0]);
+  //     players.length.should.be.equal(1);
+  //   });
 
-    it('allows multiple accounts to enter', async () => {
-      await this.lottery.enter({
-        from: accounts[0],
-        value: web3.toWei('0.02', 'ether')
-      })
-      await this.lottery.enter({
-        from: accounts[1],
-        value: web3.toWei('0.02', 'ether')
-      })
-      await this.lottery.enter({
-        from: accounts[2],
-        value: web3.toWei('0.02', 'ether')
-      })
+  //   it('allows multiple accounts to enter', async () => {
+  //     await this.lottery.enter({
+  //       from: accounts[0],
+  //       value: web3.toWei('0.02', 'ether')
+  //     })
+  //     await this.lottery.enter({
+  //       from: accounts[1],
+  //       value: web3.toWei('0.02', 'ether')
+  //     })
+  //     await this.lottery.enter({
+  //       from: accounts[2],
+  //       value: web3.toWei('0.02', 'ether')
+  //     })
 
-      const players = await this.lottery.getPlayers()
+  //     const players = await this.lottery.getPlayers()
 
-      accounts[0].should.be.equal(players[0]);
-      accounts[1].should.be.equal(players[1]);
-      accounts[2].should.be.equal(players[2]);
-      assert.equal(3, players.length);
-    });
+  //     accounts[0].should.be.equal(players[0]);
+  //     accounts[1].should.be.equal(players[1]);
+  //     accounts[2].should.be.equal(players[2]);
+  //     assert.equal(3, players.length);
+  //   });
 
-    it('requires a minimum amount of ether to enter', async () => {
-      await assertRevert(
-        this.lottery.enter({
-          from: accounts[0],
-          value: 0
-        })
-      );
-    });
+  //   it('requires a minimum amount of ether to enter', async () => {
+  //     await assertRevert(
+  //       this.lottery.enter({
+  //         from: accounts[0],
+  //         value: 0
+  //       })
+  //     );
+  //   });
 
-    it('only manager can call pickWinner', async () => {
-      await assertRevert(
-        this.lottery.pickWinner({
-          from: accounts[1]
-        })
-      );
-    });
+  //   it('only manager can call pickWinner', async () => {
+  //     await assertRevert(
+  //       this.lottery.pickWinner({
+  //         from: accounts[1]
+  //       })
+  //     );
+  //   });
 
-    it('sends money to the winner and resets the players array', async () => {
-      await this.lottery.enter({
-        from: accounts[0],
-        value: web3.toWei('2', 'ether')
-      });
+  //   it('sends money to the winner and resets the players array', async () => {
+  //     await this.lottery.enter({
+  //       from: accounts[0],
+  //       value: web3.toWei('2', 'ether')
+  //     });
 
-      const initialBalance = await web3.eth.getBalance(accounts[0]);
-      await this.lottery.pickWinner({ from: accounts[0] });
-      const finalBalance = await web3.eth.getBalance(accounts[0]);
-      const difference = finalBalance - initialBalance;
+  //     const initialBalance = await web3.eth.getBalance(accounts[0]);
+  //     await this.lottery.pickWinner({ from: accounts[0] });
+  //     const finalBalance = await web3.eth.getBalance(accounts[0]);
+  //     const difference = finalBalance - initialBalance;
 
-      assert(difference > web3.toWei('1.8', 'ether'));
-    });
+  //     assert(difference > web3.toWei('1.8', 'ether'));
+  //   });
 
   });
 });

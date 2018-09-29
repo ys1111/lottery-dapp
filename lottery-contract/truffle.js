@@ -3,7 +3,6 @@ require('dotenv').config()
 
 var mnemonic = process.env.MNEMONIC;
 var accessToken = process.env.INFURA_ACCESS_TOKEN;
-
 module.exports = {
   networks: {
     development: {
