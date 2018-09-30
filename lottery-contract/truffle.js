@@ -6,9 +6,9 @@ var accessToken = process.env.INFURA_ACCESS_TOKEN;
 module.exports = {
   networks: {
     development: {
-    host: "localhost",
-    port: 8545,
-    network_id: "*" // Match any network id
+      host: "localhost",
+      port: 8545,
+      network_id: "*" // Match any network id
     },
     rinkeby: {
       provider: function() {
@@ -18,7 +18,7 @@ module.exports = {
         );
       },
       network_id: "4",
-      gas: 6500000,
+      gas: 4712388,
       gasPrice: 100000000000
     }
  }
